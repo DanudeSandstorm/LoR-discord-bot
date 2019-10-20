@@ -86,7 +86,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setPresence({
         game: {
-            name: 'testing',
+            name: '!helplor',
             type: 'STREAMING',
             url: 'https://www.twitch.tv/gakiloroth'
         },
@@ -104,6 +104,10 @@ client.on('message', message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
+  // log who called the message
+  console.log(message.author.username + "#" + message.author.discriminator + " called command: " +
+    command + " | with args: " + args);
+
   // Restrict a command to a specific user by ID
   if (command === 'dbm') {
   //if (message.content.startsWith(config.prefix + 'dbm')) {
@@ -119,7 +123,7 @@ client.on('message', message => {
   }
 
   // help
-  if (command === 'help'){
+  if (command === 'helplor'){
     const embed = new Discord.RichEmbed()
       .setTitle("Commands")
       .setAuthor(client.user.username, client.user.avatarURL)
@@ -143,7 +147,11 @@ client.on('message', message => {
 
   // get card info
   if(command === "keyword"){
-    let[myKeyword] = args;
+    const myKeyword = message.content.slice(config.prefix.length + command.length)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9]/g, "") // remove special characters
+    .replace(/\s/g, '');
 
     var currKeywords = globals.keywords;
     var currWord = null;
@@ -211,7 +219,7 @@ client.on('message', message => {
       const myCardName = message.content.slice(config.prefix.length + command.length)
       .trim()
       .toLowerCase()
-      .replace("[^a-zA-Z0-9]", "") // remove special characters
+      .replace(/[^a-zA-Z0-9]/g, "") // remove special characters
       .replace(/\s/g, '');
 
       console.log(myCardName);
@@ -429,6 +437,7 @@ client.on('message', message => {
         const myCardName = message.content.slice(config.prefix.length + command.length)
         .trim()
         .toLowerCase()
+        .replace(/[^a-zA-Z0-9]/g, "") // remove special characters
         .replace(/\s/g, '');
 
         console.log(myCardName);
@@ -464,7 +473,7 @@ client.on('message', message => {
           .attachFiles([artAttach, regionAttach])
           .setImage('attachment://art.png')
           .setThumbnail('attachment://icon.png')
-          .setFooter(currCard.flavorText + '      Artist: ' + currCard.artistName)
+          .setFooter(currCard.flavorText + ' | Artist: ' + currCard.artistName)
 
           message.channel.send({embed});
       }
@@ -509,7 +518,7 @@ client.on('message', message => {
           .attachFiles([artAttach, regionAttach])
           .setImage('attachment://art.png')
           .setThumbnail('attachment://icon.png')
-          .setFooter(currCard.flavorText + '      Artist: ' + currCard.artistName)
+          .setFooter(currCard.flavorText + ' | Artist: ' + currCard.artistName)
 
           message.channel.send({embed});
       }

@@ -84,14 +84,7 @@ if(!downloadingSet || !downloadingCore){
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setPresence({
-        game: {
-            name: '!helplor',
-            type: 'STREAMING',
-            url: 'https://www.twitch.tv/gakiloroth'
-        },
-        status: 'online'
-    })
+    client.user.setActivity(config.prefix + 'help');
 });
 
 client.on('message', message => {
@@ -136,7 +129,7 @@ client.on('message', message => {
   }
 
   // help
-  if (command === 'helplor'){
+  if (command === 'help'){
     const embed = new Discord.RichEmbed()
       .setTitle("Commands")
       .setAuthor(client.user.username, client.user.avatarURL)
@@ -145,7 +138,7 @@ client.on('message', message => {
         "`" + config.prefix + "author`\n" +
         "`" + config.prefix + "keyword`\n" +
         "`" + config.prefix + "region`\n" +
-        "`" + config.prefix + "cardname`\n" +
+        "`" + config.prefix + "card`\n" +
         "`" + config.prefix + "cardid`\n" +
         "`" + config.prefix + "deck`\n" +
         "`" + config.prefix + "currentgame`\n" +
@@ -224,7 +217,7 @@ client.on('message', message => {
     }
 
     // get card by name
-    if(command === "cardname"){
+    if(command === "card"){
       const myCardName = removeSpecialChars(message.content.slice(config.prefix.length + command.length));
 
       console.log(myCardName);
@@ -524,7 +517,7 @@ client.on('message', message => {
           message.channel.send({embed});
       }
 
-      if(command === "deck"){
+      if(config.riotAPIKey && command === "deck"){
         lorapi.deck("localhost:21337", function(data) {
           if(data === null){
             message.channel.send("API unresponsive!");
@@ -540,7 +533,7 @@ client.on('message', message => {
         })
       }
 
-      if(command === "lastgame"){
+      if(config.riotAPIKey && command === "lastgame"){
         lorapi.lastgame("localhost:21337", function(data) {
           if(data == null){
             message.channel.send("API unresponsive!");
@@ -561,7 +554,7 @@ client.on('message', message => {
         })
       }
 
-      if(command === "currentgame"){
+      if(config.riotAPIKey && command === "currentgame"){
         lorapi.currentgame("localhost:21337", function(data) {
           if(data == null){
             message.channel.send("API unresponsive!");

@@ -1,0 +1,39 @@
+{
+  "env": { "node": true, "es6": true },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "dot-notation": "off",
+    "eqeqeq": "off",
+    "max-len": ["error", { "code": 132 }],
+    "no-empty": ["warn", { "allowEmptyCatch": true }],
+    "no-eval": "warn",
+    "no-fallthrough": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "no-unexpected-multiline": "error",
+    "object-curly-spacing": ["error", "always", {"objectsInObjects": false, "arraysInObjects": false}]
+  },
+  "ignorePatterns": [
+    "node_modules/"
+  ],
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "parserOptions": { 
+        "ecmaVersion": 2019,
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "modules": true,
+          "experimentalObjectRestSpread": true,
+          "legacyDecorators": true
+        }
+      },
+      "rules": {
+        "no-empty": "off",
+        "keyword-spacing": "error"
+      }
+    }
+  ]
+}

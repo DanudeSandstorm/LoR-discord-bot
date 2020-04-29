@@ -17,16 +17,17 @@ To be honest, I'm not 100% sure how to set this bot up from scratch, I personall
 - token: bot's auth token
 - prefix: the prefix for bot commands (ie "!" if the commands are "!cardname zed")
 - ownerID: your discord id
-- corepackageurl: "https://dd.b.pvp.net/datadragon-core-en_us.zip"
-- setbundlefullurl: "https://dd.b.pvp.net/datadragon-set1-en_us.zip"
-- globals: "./data/core-en-us/en_us/data/globals-en_us.json"
-- regionIcons: "./data/core-en-us/en_us/img/regions/"
-- set: "./data/set-full/en_us/data/set1-en_us.json"
-- cardArt: "./data/set-full/en_us/img/cards/"
 
 Example:
 
-<img src="https://i.imgur.com/XJdxIuc.png" width="400">
+```json
+{
+    "token": "example",
+    "riotAPIKey": "example",
+    "prefix": "!",
+    "ownerID": "example"
+}
+```
 
 ### Disclaimer
 LoR-Bot isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games

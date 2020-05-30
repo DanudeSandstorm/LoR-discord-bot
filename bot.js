@@ -1,11 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config.json');
-const LoRAPI = require('./api-wrapper.js');
+const LoRAPI = require('./src/api-wrapper.js');
 const lorapi = new LoRAPI(config.riotAPIKey);
 const AdmZip = require('adm-zip');
 const request = require('request');
 const fs = require("fs-extra");
+
+import regionInfo from './src/regionInfo';
 
 const datapath = './data';
 const tempdir = './tmp';
@@ -181,47 +183,13 @@ client.on('message', message => {
 
     // get region info
     if (command === "region"){
-      let [myRegion] = args;
-
-      let currRegions = globals.regions;
-      let currRegion = null;
-
-      for (let i = 0; i < currRegions.length; i++) {
-        if (currRegions[i].nameRef.toLowerCase().replace(/\s/g, '') === myRegion){
-          currRegion = currRegions[i];
-        }
-      }
-
-      if (currRegion === null){
-        message.channel.send("No matching region found!");
-        return;
-      }
-
-      let attachment;
-      // TEMPORARY FIX FOR NEUTRAL and ALL
-      if (currRegion.nameRef.toLowerCase() === 'neutral'){
-        attachment = new Discord.Attachment(regionIcons + 'icon-all' + '.png', 'icon.png');
-      }
-      else {
-        attachment = new Discord.Attachment(regionIcons + 'icon-' +
-          currRegion.nameRef.toLowerCase() + '.png', 'icon.png');
-      }
-
-      const embed = new Discord.RichEmbed()
-        .setTitle(currRegion.name)
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setColor(0x1c60ff)
-        .attachFile(attachment)
-        .setThumbnail('attachment://icon.png')
-
-        message.channel.send({ embed });
+      const [myRegion] = args;
+      message.channel.send(regionInfo(myRegion, globals.regions, regionIcons, client.user));
     }
 
     // get card by name
     if (command === "card"){
       const myCardName = removeSpecialChars(message.content.slice(pre.length + command.length));
-
-      console.log(myCardName);
 
       let currCard = null;
 

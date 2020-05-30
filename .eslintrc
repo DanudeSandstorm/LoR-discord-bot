@@ -15,9 +15,6 @@
     "no-unexpected-multiline": "error",
     "object-curly-spacing": ["error", "always", {"objectsInObjects": false, "arraysInObjects": false}]
   },
-  "ignorePatterns": [
-    "node_modules/"
-  ],
   "overrides": [
     {
       "files": ["*.js"],

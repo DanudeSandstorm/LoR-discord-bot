@@ -7,11 +7,12 @@ const AdmZip = require('adm-zip');
 const request = require('request');
 const fs = require("fs-extra");
 
-import regionInfo from './src/regionInfo';
-import removeSpecialChars from './src/removeSpecialChars';
-import { datapath, tempdir, globals, set1, set2, regionIcons, cardArt } from './src/globals';
-import cardDetailed from './src/cardDetailed';
-import cardBasic from './src/cardBasic';
+const regionInfo = require('./src/regionInfo.js');
+const removeSpecialChars = require('./src/removeSpecialChars.js');
+const { datapath, tempdir, set1, set2, regionIcons, cardArt } = require('./globals.js');
+let { globals } = require('./globals.js');
+const cardDetailed = require('./src/cardDetailed.js');
+const cardBasic = require('./src/cardBasic.js');
 
 const pre = config.prefix;
 

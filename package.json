@@ -2,11 +2,10 @@
   "name": "LoR-discord-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bot.js",
-    "lint":"eslint '*/**/*.{js}'"
+    "lint": "eslint '*/**/*.{js}'"
   },
   "author": "gakiloroth",
   "license": "ISC",

@@ -1,4 +1,4 @@
-export default (input) => (
+module.exports = (input) => (
     input.trim()
         .toLowerCase()
         .replace(/[^a-zA-Z0-9]/g, "")

@@ -1,7 +1,7 @@
-import { Attachment, RichEmbed } from 'discord.js';
-import { regionIcons, cardArt } from './globals';
+const { Attachment, RichEmbed } = require('discord.js');
+const { regionIcons, cardArt } = require('../globals.js');
 
-export default function cardDetailed(myCardName, set, user) {
+module.exports = function cardDetailed(myCardName, set, user) {
     let currCard = null;
 
     for (let i = 0; i < set.length; i++) {

@@ -1,7 +1,7 @@
-import { Attachment, RichEmbed } from 'discord.js';
-import { regionIcons } from './globals';
+const { Attachment, RichEmbed } = require('discord.js');
+const { regionIcons } = require('../globals');
 
-export default function regionInfo(myRegion, currRegions, user) {
+module.exports = function regionInfo(myRegion, currRegions, user) {
     let currRegion = null;
 
     for (let i = 0; i < currRegions.length; i++) {

@@ -29,7 +29,24 @@
       },
       "rules": {
         "no-empty": "off",
-        "keyword-spacing": "error"
+        "keyword-spacing": "error",
+        "indent": ["error", 4, {
+          "SwitchCase": 1
+          // "MemberExpression": "off"
+        }],
+        "comma-dangle": ["error", {
+          "arrays": "only-multiline",
+          "objects": "only-multiline",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+        }],
+        "space-before-function-paren": ["error", {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always"
+        }],
+        "space-before-blocks": "error"
       }
     }
   ]
